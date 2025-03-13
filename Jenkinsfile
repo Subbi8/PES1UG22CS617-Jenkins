@@ -5,7 +5,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    sh 'g++ -o PES1UG22SC617-1 main.cpp'
+                    sh 'ls -R'  // Debug: List all files to confirm location
+                    sh 'g++ -o PES1UG22SC617-1 CC_TA/hello.cpp'  // Compile the C++ file
                 }
             }
         }
@@ -13,22 +14,14 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    sh './PES1UG22CS617-1'  
+                    sh './PES1UG22SC617-1'  // Run the compiled binary
                 }
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-                    sh '''
-                    git config --global user.name "Subbi8"
-                    git config --global user.email "your-email@example.com"
-                    git add main.cpp
-                    git commit -m "Added working .cpp file"
-                    git push origin main
-                    '''
-                }
+                echo 'Deploying application... (Modify as needed)'
             }
         }
     }
